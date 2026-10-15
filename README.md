@@ -9,4 +9,4 @@ Landing page da DMR Assessoria: Assessoria em Suprimentos para Indústrias, Enge
 
 1. No repositório, abra **Settings → Pages**.
 2. Em **Source**, escolha **Deploy from a branch**, branch `main`, pasta `/ (root)`.
-3. Salve. Em alguns minutos o site fica disponível em `https://<seu-usuario>.github.io/dmr-assessoria/`.
+3. Salve. Em alguns minutos o site fica disponível em `https://rodsaopaulo.github.io/JiNX/`.
