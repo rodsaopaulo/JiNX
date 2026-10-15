@@ -1,8 +1,8 @@
 # DMR Assessoria – Descomplicando Suprimentos
 
-Landing page da DMR Assessoria: assessoria em suprimentos para indústrias, engenharias e comércios.
+Landing page da DMR Assessoria: Assessoria em Suprimentos para Indústrias, Engenharias e Comércios.
 
-- Contato: WhatsApp (11) 9760-5012 · rodsaopaulo@hotmail.com
+- Contato: WhatsApp (11) 97650-5012 · rodsaopaulo@hotmail.com
 - CNPJ 56.050.783/0001-72 · São Paulo/SP
 
 ## Publicar no GitHub Pages
