@@ -1,0 +1,10 @@
+# Segredos e arquivos locais nunca vão para o repositório
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.bak
+.DS_Store
+Thumbs.db
+desktop.ini

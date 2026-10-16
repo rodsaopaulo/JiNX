@@ -1,0 +1,45 @@
+name: Segurança
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  segredos:
+    name: Detecção de segredos (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  html:
+    name: Regras do site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sem script inline nem handlers on*=
+        run: |
+          if grep -nE '<script>|<script [^>]*>[^<]+</script>| on[a-z]+="' index.html; then
+            echo "Script inline encontrado. Mova o JavaScript para js/ (a CSP bloqueia script inline)."
+            exit 1
+          fi
+      - name: CSP presente
+        run: grep -q 'http-equiv="Content-Security-Policy"' index.html
+      - name: Links em nova aba com rel="noopener"
+        run: |
+          if grep -nE 'target="_blank"' index.html | grep -v 'rel="noopener'; then
+            echo "Link com target=_blank sem rel=noopener."
+            exit 1
+          fi
+      - name: Sem innerHTML, document.write ou eval nos scripts
+        run: |
+          if grep -rnE 'innerHTML|insertAdjacentHTML|document\.write|eval\(|new Function' js/; then
+            exit 1
+          fi
