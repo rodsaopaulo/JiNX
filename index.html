@@ -193,7 +193,7 @@ a{color:#16181B}a:hover{color:#000}
 <a href="https://wa.me/5511976505012?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20sua%20experi%C3%AAncia%20e%20verificar%20se%20voc%C3%AA%20pode%20ajudar%20com%20as%20minhas%20dificuldades.%20Pode%20tirar%20algumas%20d%C3%BAvidas%3F" target="_blank" rel="noopener" style="align-self: flex-start; background: #F2A900; color: #16181B; text-decoration: none; font-weight: 600; font-size: 17px; padding: 16px 28px; min-height: 52px; display: inline-flex; align-items: center">WhatsApp: (11) 97650-5012</a>
 <p style="margin: 0; font-size: 15px; color: #B9BCC2">E-mail: <a href="mailto:rodsaopaulo@hotmail.com" style="color: #E4E5E8">rodsaopaulo@hotmail.com</a></p>
 </div>
-<form style="background: #1F2226; border: 1px solid #3A3E44; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+<form id="form-dificuldade" style="background: #1F2226; border: 1px solid #3A3E44; padding: 32px; display: flex; flex-direction: column; gap: 18px">
 <div style="display: flex; flex-direction: column; gap: 6px">
 <label for="nome" style="font-size: 15px; font-weight: 500">Nome e empresa</label>
 <input id="nome" type="text" placeholder="Ex.: João, Metalúrgica Silva" style="font: inherit; font-size: 16px; padding: 12px 14px; min-height: 48px; background: #F4F2EE; color: #1B1D20; border: 0">
@@ -204,10 +204,24 @@ a{color:#16181B}a:hover{color:#000}
 </div>
 <div style="display: flex; flex-direction: column; gap: 6px">
 <label for="desafio-texto" style="font-size: 15px; font-weight: 500">Sua dificuldade</label>
-<textarea id="desafio-texto" rows="4" placeholder="Ex.: não encontro fornecedor de rolamento X com prazo inferior a 30 dias." style="font: inherit; font-size: 16px; padding: 12px 14px; background: #F4F2EE; color: #1B1D20; border: 0; resize: vertical"></textarea>
+<textarea id="desafio-texto" rows="4" required placeholder="Ex.: não encontro fornecedor de rolamento X com prazo inferior a 30 dias." style="font: inherit; font-size: 16px; padding: 12px 14px; background: #F4F2EE; color: #1B1D20; border: 0; resize: vertical"></textarea>
 </div>
-<button type="button" style="font: inherit; font-weight: 600; font-size: 17px; background: #F2A900; color: #16181B; border: 0; padding: 16px; min-height: 52px; cursor: pointer">Enviar minha dificuldade</button>
+<button type="submit" style="font: inherit; font-weight: 600; font-size: 17px; background: #F2A900; color: #16181B; border: 0; padding: 16px; min-height: 52px; cursor: pointer">Enviar minha dificuldade</button>
+<p style="margin: 0; font-size: 14px; color: #B9BCC2">Ao enviar, o WhatsApp abre com a sua mensagem pronta. É só tocar em enviar.</p>
 </form>
+<script>
+document.getElementById('form-dificuldade').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var nome = document.getElementById('nome').value.trim();
+  var contato = document.getElementById('contato').value.trim();
+  var texto = document.getElementById('desafio-texto').value.trim();
+  var linhas = ['Olá! Gostaria de ajuda com uma dificuldade em suprimentos.'];
+  if (nome) linhas.push('Nome e empresa: ' + nome);
+  if (contato) linhas.push('WhatsApp: ' + contato);
+  linhas.push('Minha dificuldade: ' + texto);
+  window.open('https://wa.me/5511976505012?text=' + encodeURIComponent(linhas.join('\n')), '_blank', 'noopener');
+});
+</script>
 </div>
 </section>
 
