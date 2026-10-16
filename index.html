@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>DMR Assessoria – Descomplicando Suprimentos</title>
 <meta name="description" content="Assessoria em Suprimentos para Indústrias, Engenharias e Comércios. Redução de custos, prazos e paradas por falta de material. São Paulo/SP.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -196,32 +198,20 @@ a{color:#16181B}a:hover{color:#000}
 <form id="form-dificuldade" style="background: #1F2226; border: 1px solid #3A3E44; padding: 32px; display: flex; flex-direction: column; gap: 18px">
 <div style="display: flex; flex-direction: column; gap: 6px">
 <label for="nome" style="font-size: 15px; font-weight: 500">Nome e empresa</label>
-<input id="nome" type="text" placeholder="Ex.: João, Metalúrgica Silva" style="font: inherit; font-size: 16px; padding: 12px 14px; min-height: 48px; background: #F4F2EE; color: #1B1D20; border: 0">
+<input id="nome" type="text" maxlength="120" autocomplete="organization" placeholder="Ex.: João, Metalúrgica Silva" style="font: inherit; font-size: 16px; padding: 12px 14px; min-height: 48px; background: #F4F2EE; color: #1B1D20; border: 0">
 </div>
 <div style="display: flex; flex-direction: column; gap: 6px">
 <label for="contato" style="font-size: 15px; font-weight: 500">WhatsApp</label>
-<input id="contato" type="tel" placeholder="(11) 90000-0000" style="font: inherit; font-size: 16px; padding: 12px 14px; min-height: 48px; background: #F4F2EE; color: #1B1D20; border: 0">
+<input id="contato" type="tel" maxlength="20" autocomplete="tel" placeholder="(11) 90000-0000" style="font: inherit; font-size: 16px; padding: 12px 14px; min-height: 48px; background: #F4F2EE; color: #1B1D20; border: 0">
 </div>
 <div style="display: flex; flex-direction: column; gap: 6px">
 <label for="desafio-texto" style="font-size: 15px; font-weight: 500">Sua dificuldade</label>
-<textarea id="desafio-texto" rows="4" required placeholder="Ex.: não encontro fornecedor de rolamento X com prazo inferior a 30 dias." style="font: inherit; font-size: 16px; padding: 12px 14px; background: #F4F2EE; color: #1B1D20; border: 0; resize: vertical"></textarea>
+<textarea id="desafio-texto" rows="4" required maxlength="1000" placeholder="Ex.: não encontro fornecedor de rolamento X com prazo inferior a 30 dias." style="font: inherit; font-size: 16px; padding: 12px 14px; background: #F4F2EE; color: #1B1D20; border: 0; resize: vertical"></textarea>
 </div>
 <button type="submit" style="font: inherit; font-weight: 600; font-size: 17px; background: #F2A900; color: #16181B; border: 0; padding: 16px; min-height: 52px; cursor: pointer">Enviar minha dificuldade</button>
 <p style="margin: 0; font-size: 14px; color: #B9BCC2">Ao enviar, o WhatsApp abre com a sua mensagem pronta. É só tocar em enviar.</p>
 </form>
-<script>
-document.getElementById('form-dificuldade').addEventListener('submit', function (e) {
-  e.preventDefault();
-  var nome = document.getElementById('nome').value.trim();
-  var contato = document.getElementById('contato').value.trim();
-  var texto = document.getElementById('desafio-texto').value.trim();
-  var linhas = ['Olá! Gostaria de ajuda com uma dificuldade em suprimentos.'];
-  if (nome) linhas.push('Nome e empresa: ' + nome);
-  if (contato) linhas.push('WhatsApp: ' + contato);
-  linhas.push('Minha dificuldade: ' + texto);
-  window.open('https://wa.me/5511976505012?text=' + encodeURIComponent(linhas.join('\n')), '_blank', 'noopener');
-});
-</script>
+<script src="js/formulario.js"></script>
 </div>
 </section>
 
