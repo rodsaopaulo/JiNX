@@ -30,8 +30,19 @@ jobs:
             echo "Script inline encontrado. Mova o JavaScript para js/ (a CSP bloqueia script inline)."
             exit 1
           fi
-      - name: CSP presente
-        run: grep -q 'http-equiv="Content-Security-Policy"' index.html
+      - name: CSP e headers de segurança presentes
+        run: |
+          for h in Content-Security-Policy X-Frame-Options X-Content-Type-Options Referrer-Policy; do
+            grep -q "\"$h\"" vercel.json || { echo "Header $h ausente no vercel.json"; exit 1; }
+          done
+      - name: Sintaxe dos scripts
+        run: for f in api/*.js js/*.js; do node --check "$f"; done
+      - name: Nenhum segredo com valor no .env.example
+        run: |
+          if grep -nE '^(WHATSAPP_TOKEN|TURNSTILE_SECRET_KEY)=.+' .env.example; then
+            echo "Segredo preenchido no .env.example."
+            exit 1
+          fi
       - name: Links em nova aba com rel="noopener"
         run: |
           if grep -nE 'target="_blank"' index.html | grep -v 'rel="noopener'; then
@@ -40,6 +51,6 @@ jobs:
           fi
       - name: Sem innerHTML, document.write ou eval nos scripts
         run: |
-          if grep -rnE 'innerHTML|insertAdjacentHTML|document\.write|eval\(|new Function' js/; then
+          if grep -rnE 'innerHTML|insertAdjacentHTML|document\.write|eval\(|new Function' js/ api/; then
             exit 1
           fi

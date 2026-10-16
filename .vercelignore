@@ -1,0 +1,6 @@
+# Arquivos do repositório que não precisam ser publicados no site
+docs
+.github
+CLAUDE.md
+README.md
+.env.example
