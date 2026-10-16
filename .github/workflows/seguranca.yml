@@ -12,7 +12,7 @@ jobs:
     name: Detecção de segredos (gitleaks)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - uses: gitleaks/gitleaks-action@v2
@@ -23,7 +23,7 @@ jobs:
     name: Regras do site
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Sem script inline nem handlers on*=
         run: |
           if grep -nE '<script>|<script [^>]*>[^<]+</script>| on[a-z]+="' index.html; then
