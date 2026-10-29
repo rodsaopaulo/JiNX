@@ -4,6 +4,7 @@
 
 - HTML estático (`index.html`) com CSS inline.
 - JavaScript puro em `js/formulario.js` (formulário que abre o WhatsApp).
+- Logo em `dmr-logo.png`, servido do próprio site (coberto por `img-src 'self'`).
 - Sem framework, sem build, sem dependências.
 
 ## Hospedagem
