@@ -5,6 +5,8 @@
 - HTML estático (`index.html`) com CSS inline.
 - JavaScript puro em `js/formulario.js` (formulário que abre o WhatsApp).
 - Logo em `dmr-logo.png`, servido do próprio site (coberto por `img-src 'self'`).
+- Reels em `dmr-reels.mp4` (capa `dmr-reels-capa.jpg`), servido do próprio site. A CSP ganhou `media-src 'self'` para o vídeo; nenhum domínio externo foi liberado.
+- Animações só em CSS (abertura com o logo, entrada do topo, revelação ao rolar com `animation-timeline: view()` e faixas em movimento). Sem JavaScript novo; quem usa "reduzir movimento" no sistema não vê as animações.
 - Sem framework, sem build, sem dependências.
 
 ## Hospedagem
